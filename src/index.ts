@@ -7,9 +7,9 @@ import { rateLimitVerification } from '@/middleware/rateLimit';
 import { eq } from 'drizzle-orm';
 import { Hono } from 'hono';
 
-const auth = new Hono();
+const app = new Hono();
 
-auth.post('/verify-email', rateLimitVerification, async (c) => {
+app.post('/verify-email', rateLimitVerification, async (c) => {
   const result = verifyEmailSchema.safeParse(await c.req.json());
 
   if (!result.success) {
@@ -44,7 +44,7 @@ auth.post('/verify-email', rateLimitVerification, async (c) => {
   return c.json({ message: 'Verification email sent' });
 });
 
-auth.post('/verify-otp', rateLimitVerification, async (c) => {
+app.post('/verify-otp', rateLimitVerification, async (c) => {
   const result = verifyOTPSchema.safeParse(await c.req.json());
 
   if (!result.success) {
@@ -75,4 +75,4 @@ auth.post('/verify-otp', rateLimitVerification, async (c) => {
   return c.json({ message: 'Email verified successfully' });
 });
 
-export default auth;
+export default app;
