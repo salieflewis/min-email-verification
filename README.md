@@ -38,4 +38,4 @@ Verify the OTP code.
 - `DATABASE_URL`: Postgres connection string
 - `RESEND_API_KEY`: Resend API key for email delivery
 - `OTP_SECRET`: Secret for OTP generation
-# min-email-verification
+- `EMAIL_FROM`: Email address for verification emails
